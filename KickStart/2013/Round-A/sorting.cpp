@@ -24,40 +24,40 @@ void splitAndSortOddandEven(vector<int> original, vector<int> &odd, vector<int> 
     reverse(even.begin(), even.end());
 }
 
-vector<int> getFinal(vector<int> original, vector<int> odd, vector<int> even, int N) {
-    vector<int> final;
+vector<int> getAnswer(vector<int> original, vector<int> odd, vector<int> even, int N) {
+    vector<int> answer;
     for(auto i: original) {
         if (i%2 == 0) {
-            final.push_back(even.front());
+            answer.push_back(even.front());
             even.erase(even.begin());
         }
         else {
-            final.push_back(odd.front());
+            answer.push_back(odd.front());
             odd.erase(odd.begin());
         }
     }
-    return final;
+    return answer;
 }
 
-void clearVectors(vector<int> &original, vector<int> &odd, vector<int> &even, vector<int> &final) {
+void clearVectors(vector<int> &original, vector<int> &odd, vector<int> &even, vector<int> &answer) {
     original.clear();
     odd.clear();
     even.clear();
-    final.clear();
+    answer.clear();
 }
 
 int main() {
     int T, N;
-    vector<int> original, even, odd, final;
+    vector<int> original, even, odd, answer;
     cin >> T;
     for(int i=0; i<T; i++) {
         cin >> N;
         original = inputOriginal(N);
         splitAndSortOddandEven(original, odd, even, N);        
-        final = getFinal(original, odd, even, N);
+        answer = getAnswer(original, odd, even, N);
         cout << "Case #" << i+1 << ": ";
-        for (auto z:final) cout << z << " ";
+        for (auto z:answer) cout << z << " ";
         cout << endl;
-        clearVectors(original, odd, even, final);
+        clearVectors(original, odd, even, answer);
     }
 }
